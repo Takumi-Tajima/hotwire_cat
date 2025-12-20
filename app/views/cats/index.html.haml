@@ -4,6 +4,16 @@
 
 %h1 Cats
 
+= search_form_for @q, url: cats_path, method: :get do |f|
+  %div
+    = f.label :name_cont
+    = f.search_field :name_cont
+  %div
+    = f.label :age_eq
+    = f.number_field :age_eq
+  %div
+    = f.submit
+
 %div{id: "cats"}
   - @cats.each do |cat|
     = render cat
@@ -11,3 +21,5 @@
       = link_to "Show this cat", cat
 
 = link_to "New cat", new_cat_path
+
+= paginate @cats

@@ -2,7 +2,8 @@ class CatsController < ApplicationController
   before_action :set_cat, only: %i[show edit update destroy]
 
   def index
-    @cats = Cat.default_order
+    @q = Cat.ransack(params[:q])
+    @cats = @q.result.default_order.page(params[:page])
   end
 
   def show
