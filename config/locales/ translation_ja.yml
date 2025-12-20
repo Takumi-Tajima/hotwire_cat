@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      cat: 猫
+
+    attributes:
+      cat:
+        name: 名前
+        age: 年齢
