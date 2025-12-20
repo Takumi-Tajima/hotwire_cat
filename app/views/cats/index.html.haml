@@ -14,6 +14,9 @@
   %div
     = f.submit
 
+= sort_link @q, :name, class: "btn btn-link"
+= sort_link @q, :age, class: "btn btn-link"
+
 %div{id: "cats"}
   - @cats.each do |cat|
     = render cat
