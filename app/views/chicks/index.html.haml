@@ -1,0 +1,13 @@
+%p{style: "color: green"}= notice
+
+- content_for :title, "Chicks"
+
+%h1 Chicks
+
+%div{id: "chicks"}
+  - @chicks.each do |chick|
+    = render chick
+    %p
+      = link_to "Show this chick", chick
+
+= link_to "New chick", new_chick_path

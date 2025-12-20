@@ -10,11 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_20_062256) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_20_063440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "cats", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "age", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chicks", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "age", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dogs", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "age", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hedgehogs", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "age", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "owls", force: :cascade do |t|
     t.string "name", null: false
     t.integer "age", null: false
     t.datetime "created_at", null: false

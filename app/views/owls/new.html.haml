@@ -1,0 +1,10 @@
+- content_for :title, "New owl"
+
+%h1 New owl
+
+= render "form", owl: @owl
+
+%br
+
+%div
+  = link_to "Back to owls", owls_path

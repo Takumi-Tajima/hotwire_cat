@@ -1,0 +1,10 @@
+- content_for :title, "New hedgehog"
+
+%h1 New hedgehog
+
+= render "form", hedgehog: @hedgehog
+
+%br
+
+%div
+  = link_to "Back to hedgehogs", hedgehogs_path

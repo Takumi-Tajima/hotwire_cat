@@ -1,0 +1,10 @@
+- content_for :title, "New chick"
+
+%h1 New chick
+
+= render "form", chick: @chick
+
+%br
+
+%div
+  = link_to "Back to chicks", chicks_path

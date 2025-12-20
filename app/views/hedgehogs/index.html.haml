@@ -1,0 +1,13 @@
+%p{style: "color: green"}= notice
+
+- content_for :title, "Hedgehogs"
+
+%h1 Hedgehogs
+
+%div{id: "hedgehogs"}
+  - @hedgehogs.each do |hedgehog|
+    = render hedgehog
+    %p
+      = link_to "Show this hedgehog", hedgehog
+
+= link_to "New hedgehog", new_hedgehog_path
