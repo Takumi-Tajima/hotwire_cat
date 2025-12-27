@@ -2,7 +2,8 @@ class ChicksController < ApplicationController
   before_action :set_chick, only: %i[show edit update destroy]
 
   def index
-    @chicks = Chick.default_order
+    @q = Chick.ransack(params[:q])
+    @chicks = @q.result.default_order.page(params[:page]).per(10)
   end
 
   def show
@@ -19,7 +20,7 @@ class ChicksController < ApplicationController
     @chick = Chick.new(chick_params)
 
     if @chick.save
-      redirect_to @chick, notice: 'Chick was successfully created.'
+      redirect_to chicks_path, notice: 'Chick was successfully created.'
     else
       render :new, status: :unprocessable_content
     end
@@ -27,7 +28,7 @@ class ChicksController < ApplicationController
 
   def update
     if @chick.update(chick_params)
-      redirect_to @chick, notice: 'Chick was successfully updated.', status: :see_other
+      redirect_to chicks_path, notice: 'Chick was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_content
     end

@@ -2,7 +2,8 @@ class HedgehogsController < ApplicationController
   before_action :set_hedgehog, only: %i[show edit update destroy]
 
   def index
-    @hedgehogs = Hedgehog.default_order
+    @q = Hedgehog.ransack(params[:q])
+    @hedgehogs = @q.result.default_order.page(params[:page]).per(10)
   end
 
   def show
@@ -19,7 +20,7 @@ class HedgehogsController < ApplicationController
     @hedgehog = Hedgehog.new(hedgehog_params)
 
     if @hedgehog.save
-      redirect_to @hedgehog, notice: 'Hedgehog was successfully created.'
+      redirect_to hedgehogs_path, notice: 'Hedgehog was successfully created.'
     else
       render :new, status: :unprocessable_content
     end
@@ -27,7 +28,7 @@ class HedgehogsController < ApplicationController
 
   def update
     if @hedgehog.update(hedgehog_params)
-      redirect_to @hedgehog, notice: 'Hedgehog was successfully updated.', status: :see_other
+      redirect_to hedgehogs_path, notice: 'Hedgehog was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_content
     end

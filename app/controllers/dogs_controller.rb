@@ -2,7 +2,8 @@ class DogsController < ApplicationController
   before_action :set_dog, only: %i[show edit update destroy]
 
   def index
-    @dogs = Dog.default_order
+    @q = Dog.ransack(params[:q])
+    @dogs = @q.result.default_order.page(params[:page]).per(10)
   end
 
   def show
@@ -19,7 +20,7 @@ class DogsController < ApplicationController
     @dog = Dog.new(dog_params)
 
     if @dog.save
-      redirect_to @dog, notice: 'Dog was successfully created.'
+      redirect_to dogs_path, notice: 'Dog was successfully created.'
     else
       render :new, status: :unprocessable_content
     end
@@ -27,7 +28,7 @@ class DogsController < ApplicationController
 
   def update
     if @dog.update(dog_params)
-      redirect_to @dog, notice: 'Dog was successfully updated.', status: :see_other
+      redirect_to dogs_path, notice: 'Dog was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_content
     end

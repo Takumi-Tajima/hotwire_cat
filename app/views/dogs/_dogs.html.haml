@@ -5,8 +5,8 @@
       %th= sort_link q, :age, class: "btn btn-link"
       %th
   %tbody
-    - cats.each do |cat|
+    - dogs.each do |dog|
       %tr
-        %td= cat.name
-        %td= cat.age
-        %td.text-end= link_to '編集', edit_cat_path(cat)
+        %td= dog.name
+        %td= dog.age
+        %td.text-end= link_to '編集', edit_dog_path(dog)

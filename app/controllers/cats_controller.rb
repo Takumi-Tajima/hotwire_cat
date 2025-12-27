@@ -20,7 +20,7 @@ class CatsController < ApplicationController
     @cat = Cat.new(cat_params)
 
     if @cat.save
-      redirect_to @cat, notice: 'Cat was successfully created.'
+      redirect_to cats_path, notice: 'Cat was successfully created.'
     else
       render :new, status: :unprocessable_content
     end
@@ -28,7 +28,7 @@ class CatsController < ApplicationController
 
   def update
     if @cat.update(cat_params)
-      redirect_to @cat, notice: 'Cat was successfully updated.', status: :see_other
+      redirect_to cats_path, notice: 'Cat was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_content
     end

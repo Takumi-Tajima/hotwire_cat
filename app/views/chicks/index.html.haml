@@ -1,13 +1,12 @@
-%p{style: "color: green"}= notice
+%h1.fs-2 Chicks
 
-- content_for :title, "Chicks"
+= render 'layouts/search_form', q: @q, path: chicks_path
 
-%h1 Chicks
+.card.shadow.my-3
+  .card-header.d-flex.justify-content-between.align-items-center
+    %div 一覧
+    %div= link_to '新規作成', new_chick_path, class: 'btn btn-success'
+  .card-body
+    = render 'chicks', q: @q, chicks: @chicks
 
-%div{id: "chicks"}
-  - @chicks.each do |chick|
-    = render chick
-    %p
-      = link_to "Show this chick", chick
-
-= link_to "New chick", new_chick_path
+= paginate @chicks

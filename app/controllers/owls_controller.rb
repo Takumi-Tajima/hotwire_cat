@@ -2,7 +2,8 @@ class OwlsController < ApplicationController
   before_action :set_owl, only: %i[show edit update destroy]
 
   def index
-    @owls = Owl.default_order
+    @q = Owl.ransack(params[:q])
+    @owls = @q.result.default_order.page(params[:page]).per(10)
   end
 
   def show
@@ -19,7 +20,7 @@ class OwlsController < ApplicationController
     @owl = Owl.new(owl_params)
 
     if @owl.save
-      redirect_to @owl, notice: 'Owl was successfully created.'
+      redirect_to owls_path, notice: 'Owl was successfully created.'
     else
       render :new, status: :unprocessable_content
     end
@@ -27,7 +28,7 @@ class OwlsController < ApplicationController
 
   def update
     if @owl.update(owl_params)
-      redirect_to @owl, notice: 'Owl was successfully updated.', status: :see_other
+      redirect_to owls_path, notice: 'Owl was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_content
     end

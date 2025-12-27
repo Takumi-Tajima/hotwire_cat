@@ -1,13 +1,12 @@
-%p{style: "color: green"}= notice
+%h1.fs-2 Hedgehogs
 
-- content_for :title, "Hedgehogs"
+= render 'layouts/search_form', q: @q, path: hedgehogs_path
 
-%h1 Hedgehogs
+.card.shadow.my-3
+  .card-header.d-flex.justify-content-between.align-items-center
+    %div 一覧
+    %div= link_to '新規作成', new_hedgehog_path, class: 'btn btn-success'
+  .card-body
+    = render 'hedgehogs', q: @q, hedgehogs: @hedgehogs
 
-%div{id: "hedgehogs"}
-  - @hedgehogs.each do |hedgehog|
-    = render hedgehog
-    %p
-      = link_to "Show this hedgehog", hedgehog
-
-= link_to "New hedgehog", new_hedgehog_path
+= paginate @hedgehogs
