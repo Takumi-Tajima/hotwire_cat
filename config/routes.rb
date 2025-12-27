@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'cats#index'
+
   resources :cats, only: %i[index show new edit create update destroy]
   resources :dogs, only: %i[index show new edit create update destroy]
   resources :chicks, only: %i[index show new edit create update destroy]
