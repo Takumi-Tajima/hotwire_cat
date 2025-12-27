@@ -2,11 +2,12 @@
 
 = render 'layouts/search_form', q: @q, path: cats_path
 
-.card.shadow.my-3
-  .card-header.d-flex.justify-content-between.align-items-center
-    %div 一覧
-    %div= link_to '新規作成', new_cat_path, class: 'btn btn-success'
-  .card-body
-    = render 'cats', q: @q, cats: @cats
+= turbo_frame_tag 'cats-list' do
+  .card.shadow.my-3
+    .card-header.d-flex.justify-content-between.align-items-center
+      %div 一覧
+      %div= link_to '新規作成', new_cat_path, class: 'btn btn-success'
+    .card-body
+      = render 'cats', q: @q, cats: @cats
 
-= paginate @cats
+  = paginate @cats
