@@ -1,0 +1,8 @@
+.card.shadow
+  .card-header 検索
+  .card-body
+    = search_form_for q, url: path, method: :get do |f|
+      .row.g-3
+        .col-5= f.search_field :name_cont, class: 'form-control', placeholder: '名前を入力してください'
+        .col-5= f.number_field :age_eq, class: 'form-control', placeholder: '年齢を入力してください'
+        .col-2= f.submit class: 'btn btn-primary w-100'

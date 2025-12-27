@@ -3,7 +3,7 @@ class CatsController < ApplicationController
 
   def index
     @q = Cat.ransack(params[:q])
-    @cats = @q.result.default_order.page(params[:page])
+    @cats = @q.result.default_order.page(params[:page]).per(10)
   end
 
   def show

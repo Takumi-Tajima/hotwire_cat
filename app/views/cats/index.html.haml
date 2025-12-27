@@ -1,28 +1,12 @@
-%p{style: "color: green"}= notice
+%h1.fs-2 Cats
 
-- content_for :title, "Cats"
+= render 'layouts/search_form', q: @q, path: cats_path
 
-%h1 Cats
-
-= search_form_for @q, url: cats_path, method: :get do |f|
-  %div
-    = f.label :name_cont
-    = f.search_field :name_cont
-  %div
-    = f.label :age_eq
-    = f.number_field :age_eq
-  %div
-    = f.submit
-
-= sort_link @q, :name, class: "btn btn-link"
-= sort_link @q, :age, class: "btn btn-link"
-
-%div{id: "cats"}
-  - @cats.each do |cat|
-    = render cat
-    %p
-      = link_to "Show this cat", cat
-
-= link_to "New cat", new_cat_path
+.card.shadow.my-3
+  .card-header.d-flex.justify-content-between.align-items-center
+    %div 一覧
+    %div= link_to '新規作成', new_cat_path, class: 'btn btn-success'
+  .card-body
+    = render 'cats', q: @q, cats: @cats
 
 = paginate @cats
