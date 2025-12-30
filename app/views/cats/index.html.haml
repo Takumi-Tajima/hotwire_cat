@@ -1,6 +1,6 @@
 %h1.fs-2 Cats
 
-= render 'layouts/search_form', q: @q, path: cats_path
+= render 'layouts/search_form', q: @q, path: cats_path, search_results: 'cats-list'
 
 = turbo_frame_tag 'cats-list' do
   .card.shadow.my-3
