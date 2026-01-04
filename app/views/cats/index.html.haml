@@ -8,6 +8,14 @@
       %div 一覧
       %div= link_to '新規作成', new_cat_path, class: 'btn btn-success'
     .card-body
-      = render 'cats', q: @q, cats: @cats
+      %table.table
+        %thead
+          %tr
+            %th= sort_link @q, :name, class: "btn btn-link"
+            %th= sort_link @q, :age, class: "btn btn-link"
+            %th
+        %tbody
+          - @cats.each do |cat|
+            = render 'cats/cat', cat: cat
 
   = paginate @cats

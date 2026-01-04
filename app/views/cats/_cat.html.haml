@@ -1,0 +1,5 @@
+= turbo_frame_tag cat do
+  %tr
+    %td= cat.name
+    %td= cat.age
+    %td.text-end= link_to '編集', edit_cat_path(cat)
